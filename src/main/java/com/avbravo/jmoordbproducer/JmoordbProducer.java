@@ -15,7 +15,7 @@ import javax.inject.Singleton;
  * @author avbravo
  */
 @Singleton
-public class XMongoConnection {
+public class JmoordbProducer {
      @Produces
     @ApplicationScoped
     public MongoClient mongoClient() {
