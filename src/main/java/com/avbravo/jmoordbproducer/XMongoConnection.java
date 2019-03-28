@@ -19,6 +19,8 @@ public class XMongoConnection {
      @Produces
     @ApplicationScoped
     public MongoClient mongoClient() {
+        String username =(String) JmoordbContextApplication.get("username");
+        String password =(String)JmoordbContextApplication.get("password");
         MongoClient mongo = new MongoClient("localhost", 27017);
         return mongo;
     } 
