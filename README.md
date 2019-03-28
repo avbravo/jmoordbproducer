@@ -34,3 +34,27 @@ MongoClient mongoClient;
         JmoordbContextApplication.put("username", "avbravo");
         JmoordbContextApplication.put("password", "password");       
     }
+
+
+---------------------------------------------------
+-->Eliminar el MongoClientProvider del proyecto ejb
+----------------------------------------
+-->Eliminar  de cada repository
+@EJB
+    MongoClientStoreejbProvider mongoClientStoreejbProvider;
+    @Override
+    protected MongoClient getMongoClient() {
+       return mongoClientStoreejbProvider.getMongoClient();
+    }
+-------------------------------------------------------------
+--->Crear un constructor de tipo build llamado JmoordbConnection
+para los parametros de coneccion (username, host,password), etc.
+-----------------------------------------------------------
+--->Crear en jmoordb: JmoordbProducer que es singleton
+agregarle
+------------->Agregarle
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
+----------------------------------------------------
+En el Repository principal
+usar @Inject
+MongoClient mongoclient; --> el invoca del @Producer
